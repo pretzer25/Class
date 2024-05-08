@@ -1,9 +1,11 @@
+window.addEventListener("load", () => {
+  navigator.serviceWorker.register("../sw.js?v=5-5-2024", {
+    scope: "/a/",
+  })
+})
+
 if (document.getElementById("add-tab")) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("../sw.js?v=4", {
-      scope: "/a/",
-    })
-
     const form = document.getElementById("fs")
     const input = document.getElementById("is")
 
@@ -44,12 +46,6 @@ if (document.getElementById("add-tab")) {
     }
   })
 } else {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("../sw.js?v=4", {
-      scope: "/a/",
-    })
-  })
-
   const form = document.getElementById("fs")
   const input = document.getElementById("is")
 

@@ -1,5 +1,5 @@
+// Ads
 document.addEventListener("DOMContentLoaded", function () {
-  // Ads
   if (localStorage.getItem("ad") === null || localStorage.getItem("ad") === "default") {
     localStorage.setItem("ad", "on")
   }
@@ -16,13 +16,47 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("The adv div has been removed.")
   }
 })
-
+// Dynamic & Ads
 document.addEventListener("DOMContentLoaded", function () {
-  // Ads
-  if (localStorage.getItem("dy") === null || localStorage.getItem("ad") === "auto") {
+  if (localStorage.getItem("dy") === null || localStorage.getItem("dy") === undefined) {
     localStorage.setItem("dy", "false")
   }
 })
+// Clear Cache
+function Clear() {
+  document.cookie.split("; ").forEach(function (cookie) {
+    var cookieName = cookie.split("=")[0]
+    document.cookie = cookieName + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT"
+  })
+
+  localStorage.clear()
+  sessionStorage.clear()
+
+  if (caches && caches.keys) {
+    caches
+      .keys()
+      .then(function (cacheNames) {
+        return Promise.all(
+          cacheNames.map(function (cacheName) {
+            return caches.delete(cacheName)
+          })
+        )
+      })
+      .then(function () {
+        console.log("Cache storage cleared successfully.")
+      })
+      .catch(function (error) {
+        console.error("Failed to clear cache storage:", error)
+      })
+  }
+}
+
+if (localStorage.getItem("cache") !== "3") {
+  Clear()
+  localStorage.setItem("cache", "3")
+}
+
+
 
 // Nav
 var nav = document.querySelector(".fixed-nav-bar")
